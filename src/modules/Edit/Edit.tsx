@@ -35,7 +35,7 @@ export const Edit = ({ checklist }: Props) => {
           name: data.farmCity,
         },
       },
-      checklist.id || 123,
+      checklist.id || '123',
     );
     return null;
   };

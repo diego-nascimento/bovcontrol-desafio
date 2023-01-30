@@ -16,7 +16,7 @@ interface contextInterface {
   ) => Promise<void>;
   updateChecklistService: (
     checklist: updateCheckListInterface,
-    id: number,
+    id: string,
   ) => Promise<void>;
 }
 
@@ -67,7 +67,7 @@ const ChecklistProvider = ({
 
   const updateChecklistService = async (
     checklist: updateCheckListInterface,
-    id: number,
+    id: string,
   ): Promise<void> => {
     setLoading(true);
     const result = await httpClient({

@@ -15,7 +15,7 @@ export type locationTypes = {
 
 
 export interface checkListTypes {
-  id?: string | number
+  id?: string
   _id?: number
   type: 'BPA' | 'Antibiótico' |'BPF'
   amount_of_milk_produced: string,
