@@ -18,5 +18,8 @@ export const ChildrenContainer= styled.div`
     padding: ${theme.spacings.xxSmall};
     background-color: ${theme.colors.formWrapperBackground};
     border-radius: ${theme.borderRadius};
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   `}
 `

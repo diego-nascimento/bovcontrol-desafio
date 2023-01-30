@@ -3,6 +3,7 @@ import { Information } from '@/shared/components/Information/Information';
 import { convertDate } from '@/shared/utils/convertDate';
 import { checkListTypes } from '@/types/checklist';
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
+import { BiShow } from 'react-icons/bi';
 
 import React, { useState } from 'react';
 import * as SC from './style';
@@ -27,6 +28,10 @@ export const Checklist = ({ checklist }: ChecklistProps) => {
   };
 
   const handleClickOnEditButton = () => {
+    push(`/checklist/editar/${checklist._id}`);
+  };
+
+  const handleViewChecklist = () => {
     push(`/checklist/${checklist._id}`);
   };
   return (
@@ -46,6 +51,7 @@ export const Checklist = ({ checklist }: ChecklistProps) => {
             {convertDate({ dateAsString: checklist.created_at })}
           </SC.CreatedAt>
           <SC.ButtonsContainer>
+            <Button Icon={BiShow} callback={handleViewChecklist} />
             <Button Icon={AiOutlineEdit} callback={handleClickOnEditButton} />
             <Button Icon={AiOutlineDelete} callback={handleIsDeleting} />
           </SC.ButtonsContainer>

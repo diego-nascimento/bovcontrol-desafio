@@ -45,9 +45,17 @@ async function httpClient({
    
 }
 
-export const getChecklist = async ():Promise<Result> => {
+export const getChecklists = async ():Promise<Result> => {
     const response = await httpClient({
         endPoint: '/v1/checkList',
+        method: 'GET'
+    })
+    return response
+}
+
+export const getCheckList = async (id: string)=> {
+    const response = await httpClient({
+        endPoint: `/v1/checkList/${id}`,
         method: 'GET'
     })
     return response

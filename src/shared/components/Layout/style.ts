@@ -12,6 +12,7 @@ ${({theme}) => css`
   width: 100%;
   max-width: ${theme.widthSize};
   min-height: 100vh;
+  padding: ${theme.spacings.small} ${theme.spacings.none};
 
   @media only screen and (max-width: ${theme.widthSize}) {
       padding: ${theme.spacings.small} ${theme.spacings.small};

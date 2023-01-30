@@ -1,8 +1,9 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
-import { getChecklistService } from '@/shared/services/getCheckListService';
+
 import { checkListTypes } from '@/types/checklist';
 import { Home as HomeComponent } from '@/modules';
+import { getChecklistsService } from '@/shared/services/getCheckListsService';
 interface HomeProps {
   checklists: checkListTypes[];
 }
@@ -14,7 +15,7 @@ const Home = ({ checklists }: HomeProps) => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const checklists = await getChecklistService();
+  const checklists = await getChecklistsService();
   return {
     props: {
       checklists,

@@ -5,11 +5,6 @@ export const Wrapper = styled.div`
     display: flex;
     gap: 5px;
     color: ${theme.colors.textColor};
-    margin-top: ${theme.spacings.xxxSmall};
-
-    :first-child {
-      margin-top: 0px;
-    }
 `}
 `
 
