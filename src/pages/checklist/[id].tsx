@@ -28,6 +28,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
 
   const checklist = await getChecklistService(id.toString());
+  if (!checklist) {
+    return {
+      redirect: {
+        destination: '/',
+      },
+      props: {},
+    };
+  }
   return {
     props: {
       checklist,
