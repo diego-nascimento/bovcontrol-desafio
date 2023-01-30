@@ -7,7 +7,8 @@ export const Theme = {
     textColor: '#131313',
     borderColors: '#131313',
     white: '#fff',
-    warningBackground: '#ff0f0f'
+    warningBackground: '#ff0f0f',
+    textColorInBlack: '#f1f1f1'
   },
   fonts: {
     family: `'Roboto', sans-serif`,
