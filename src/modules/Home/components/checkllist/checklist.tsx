@@ -40,7 +40,7 @@ export const Checklist = ({ checklist }: ChecklistProps) => {
         <Warning
           title="Deletando"
           message="Deseja realmente deletar esse registro?"
-          callback={() => deleteChecklistService(checklist._id)}
+          callback={() => deleteChecklistService(checklist._id ?? 123)}
           removeModal={handleIsNotDeleting}
         />
       )}

@@ -49,7 +49,7 @@ export async function httpClient({
 
 export const getChecklists = async ():Promise<Result> => {
     const response = await httpClient({
-        url: 'http://challenge-front-end.bovcontrol.com',
+        url: process.env.API_URL,
         endPoint: '/v1/checkList',
         method: 'GET'
     })
@@ -58,7 +58,7 @@ export const getChecklists = async ():Promise<Result> => {
 
 export const getCheckList = async (id: string)=> {
     const response = await httpClient({
-        url: 'http://challenge-front-end.bovcontrol.com',
+        url: process.env.API_URL,
         endPoint: `/v1/checkList/${id}`,
         method: 'GET'
     })
@@ -73,7 +73,7 @@ export interface  updateCheckListInterface  extends  Omit<checkListTypes, '_id'>
 
 export const createCheckList = async (data:createCheckListInterface) => {
     const response = await httpClient({
-        url: 'http://challenge-front-end.bovcontrol.com',
+        url: process.env.API_URL,
         endPoint: '/v1/checkList',
         method: 'POST',
         data: {
@@ -87,7 +87,7 @@ export const createCheckList = async (data:createCheckListInterface) => {
 
 export const deleteCheckList = async (id: number)=> {
     const response = await httpClient({
-        url: 'http://challenge-front-end.bovcontrol.com',
+        url: process.env.API_URL,
         endPoint: `/v1/checkList/${id}`,
         method: 'DELETE'
     })
@@ -96,7 +96,7 @@ export const deleteCheckList = async (id: number)=> {
 
 export const updateChecklist = async (data:updateCheckListInterface, id: number) => {
     const response = await httpClient({
-        url: 'http://challenge-front-end.bovcontrol.com',
+        url: process.env.API_URL,
         endPoint: `/v1/checkList/${id}`,
         method: 'PUT',
         data   

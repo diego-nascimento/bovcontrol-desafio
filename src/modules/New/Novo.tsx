@@ -9,7 +9,7 @@ export const Novo = () => {
 
   const handleSubmit: onSubmitType = async (data) => {
     createChecklistService({
-      id: '123',
+      id: 123,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
       farmer: {
