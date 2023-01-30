@@ -18,7 +18,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const checklists = await getChecklistsService();
   return {
     props: {
-      checklists: !checklists.length ? checklists : [],
+      checklists: checklists.length ? checklists : [],
     },
   };
 };
