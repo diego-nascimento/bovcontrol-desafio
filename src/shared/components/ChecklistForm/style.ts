@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import {motion} from 'framer-motion'
 
-export const Wrapper = styled(motion.div).attrs({
+export const Wrapper = styled(motion.form).attrs({
   initial:{ opacity: 0, translateY: 20 },
   animate:{ opacity: 1, translateY: 0 },
   transition:{duration: 0.5 },
@@ -61,7 +61,19 @@ export const SideBySide = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    gap: ${theme.spacings.xSmall}
+    gap: ${theme.spacings.xSmall};
   `}
   
 `
+
+export const SubmitButton = styled.button`
+  ${({theme})=> css`
+      color: ${theme.colors.textColor};
+      padding: ${theme.spacings.xxSmall} ${theme.spacings.medium};
+      border-radius: ${theme.borderRadius};
+      background-color: ${theme.colors.componentBackground};
+      font-weight: ${theme.fonts.weights.bold};
+      border: 1px solid ${theme.colors.textColor};
+      cursor: pointer;
+  `}
+` 

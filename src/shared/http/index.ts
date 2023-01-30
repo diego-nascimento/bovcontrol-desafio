@@ -14,11 +14,11 @@ export interface Result {
     body: any
 }
 
-async function httpClient({
+export async function httpClient({
     data, 
     endPoint, 
     headers, 
-    url = 'http://challenge-front-end.bovcontrol.com', 
+    url, 
     method = 'GET'
 }:Params):Promise<Result>  {
     try {
@@ -29,11 +29,13 @@ async function httpClient({
             headers,
             method
         })
+
         return {
             statusCode: response.status,
             body: response.data
         }
     } catch (error) {
+     
         console.log({
             statusCode: 500,
         message: error instanceof Error ? error.message : 'Something went wrong'})
@@ -47,6 +49,7 @@ async function httpClient({
 
 export const getChecklists = async ():Promise<Result> => {
     const response = await httpClient({
+        url: 'http://challenge-front-end.bovcontrol.com',
         endPoint: '/v1/checkList',
         method: 'GET'
     })
@@ -55,29 +58,48 @@ export const getChecklists = async ():Promise<Result> => {
 
 export const getCheckList = async (id: string)=> {
     const response = await httpClient({
+        url: 'http://challenge-front-end.bovcontrol.com',
         endPoint: `/v1/checkList/${id}`,
         method: 'GET'
     })
     return response
 }
 
-interface  createCheckListInterface  extends  Omit<checkListTypes, '_id'> {
-    id: string
+export interface  createCheckListInterface  extends  Omit<checkListTypes, '_id'> {
+    id: number
 }
+
+export interface  updateCheckListInterface  extends  Omit<checkListTypes, '_id'> {}
 
 export const createCheckList = async (data:createCheckListInterface) => {
     const response = await httpClient({
+        url: 'http://challenge-front-end.bovcontrol.com',
         endPoint: '/v1/checkList',
         method: 'POST',
-        data
+        data: {
+            checklists: [
+                data
+            ]
+        }
     })
     return response
 }
 
 export const deleteCheckList = async (id: number)=> {
     const response = await httpClient({
+        url: 'http://challenge-front-end.bovcontrol.com',
         endPoint: `/v1/checkList/${id}`,
         method: 'DELETE'
+    })
+    return response
+}
+
+export const updateChecklist = async (data:updateCheckListInterface, id: number) => {
+    const response = await httpClient({
+        url: 'http://challenge-front-end.bovcontrol.com',
+        endPoint: `/v1/checkList/${id}`,
+        method: 'PUT',
+        data   
     })
     return response
 }

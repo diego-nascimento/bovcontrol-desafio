@@ -11,6 +11,7 @@ export const Wrapper = styled(motion.div).attrs({
     padding: ${theme.spacings.xxSmall};
     background-color: ${theme.colors.background};
     border-radius: ${theme.borderRadius};
+    z-index: 1
   ` }
 `
 
@@ -51,3 +52,4 @@ export const MapContainer = styled.div`
     overflow: hidden;
   `}
 `
+

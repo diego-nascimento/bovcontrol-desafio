@@ -7,9 +7,10 @@ export const checklistYupSchema = yup.object({
     .min(7, 'Quantidade minima de caracteres atingida')
     .max(50, 'Quantidade maxima de caracteres atingido'),
   farmerCity: yup
-    .string()
-    .email('Email invalido')
-    .required('Campo obrigatorio'),
+  .string()
+  .required('Campo obrigatorio')
+  .min(7, 'Quantidade minima de caracteres atingida')
+  .max(50, 'Quantidade maxima de caracteres atingido'),
   farmType: yup.string().required('Este campo é obrigatorio'),
   farmName: yup
     .string()
@@ -29,6 +30,11 @@ export const checklistYupSchema = yup.object({
     .number()
     .required('Campo Obrigatorio')
     .positive('Quantidade deve ser positiva'),
-  supervised: yup.boolean()
-  
+  supervised: yup.boolean(),
+  latitude: yup
+  .number()
+  .required('Campo Obrigatorio'),
+  longitude: yup
+  .number()
+  .required('Campo Obrigatorio')
 });

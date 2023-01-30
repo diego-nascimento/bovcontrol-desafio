@@ -1,4 +1,4 @@
-import { useFormInput } from '@/shared/hooks';
+import { onSubmitType, useFormInput } from '@/shared/hooks';
 import { convertDate } from '@/shared/utils/convertDate';
 import { checkListTypes } from '@/types/checklist';
 import dynamic from 'next/dynamic';
@@ -8,6 +8,7 @@ import { InfoContainer } from '../InfoContainer';
 import { InputText } from '../InputText';
 import { optionsProps, SelectInput } from '../SelectInput';
 import { checklistYupSchema } from './checkListSchema';
+import { farmTypeOptions } from './farmTypeOptions';
 import * as SC from './style';
 
 const Map = dynamic(
@@ -19,34 +20,36 @@ const Map = dynamic(
 
 interface Props {
   checklist?: checkListTypes;
+  handleOnSubmit: onSubmitType;
+  submitText: string;
 }
 
-const farmTypeOptions: optionsProps[] = [
-  {
-    text: 'BPA',
-    value: 'BPA',
-  },
-  {
-    text: 'Antibiótico',
-    value: 'Antibiótico',
-  },
-  {
-    text: 'BPF',
-    value: 'BPF',
-  },
-];
-
-export const ChecklistForm = ({ checklist }: Props) => {
-  const { errors, onSubmit, register } = useFormInput({
+export const ChecklistForm = ({
+  checklist,
+  handleOnSubmit,
+  submitText,
+}: Props) => {
+  const { errors, onSubmit, register, setValue, getValues } = useFormInput({
     yupSchema: checklistYupSchema,
-    onSubmit: (data) => {
-      console.log(data);
+    onSubmit: handleOnSubmit,
+    initialValues: {
+      farmerName: checklist?.from?.name ?? '',
+      farmerCity: checklist?.farmer?.city ?? '',
+      farmType: checklist?.type ?? 'BPA',
+      farmName: checklist?.farmer?.name ?? '',
+      farmCity: checklist?.farmer?.city ?? '',
+      numberOfCows: checklist?.number_of_cows_head ?? 0,
+      milkProduced: checklist?.amount_of_milk_produced ?? 0,
+      supervised: checklist?.had_supervision ?? false,
+      latitude: checklist?.location.latitude ?? undefined,
+      longitude: checklist?.location.longitude ?? undefined,
     },
   });
 
   return (
-    <SC.Wrapper>
+    <SC.Wrapper onSubmit={onSubmit}>
       <SC.Header>
+        <SC.SubmitButton>{submitText}</SC.SubmitButton>
         <SC.CreatedAt>
           <span>Cadastro sendo realizado em: </span>
           {convertDate({ dateAsString: new Date().toString() })}
@@ -116,13 +119,17 @@ export const ChecklistForm = ({ checklist }: Props) => {
             />
           </SC.Division>
         </InfoContainer>
-        <Map
-          latitude={0}
-          longitude={0}
-          zoomable={true}
-          draggable={true}
-          edit={true}
-        />
+        <SC.MapContainer>
+          <Map
+            latitude={checklist?.location?.latitude || 0}
+            longitude={checklist?.location?.longitude || 0}
+            zoomable={true}
+            draggable={true}
+            edit={true}
+            setValue={setValue}
+            error={!!(errors['latitude'] || errors['latitude'])}
+          />
+        </SC.MapContainer>
       </SC.Main>
     </SC.Wrapper>
   );
